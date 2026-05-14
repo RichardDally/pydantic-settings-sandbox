@@ -1,0 +1,14 @@
+[project]
+name = "pydantic-settings-sandbox"
+version = "0.1.0"
+description = "Demo of nested Pydantic settings for multiple databases"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic-settings>=2.2.0",
+    "pydantic[email]>=2.6.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.0.0",
+]

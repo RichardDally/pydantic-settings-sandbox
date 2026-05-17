@@ -22,6 +22,7 @@ The architecture follows a tree structure where the `AppConfig` acts as the root
 * `pyproject.toml`: Manages dependencies via `uv`.
 * `lib1.py`: Contains configurations for persistence services (DB, Cache).
 * `lib2.py`: Contains configurations for external analytics.
+* `lib3.py`: Contains conditionally enabled feature configurations.
 * `app.py`: The entry point that aggregates all libraries.
 * `.env`: The local environment file where values are defined.
 
@@ -62,6 +63,11 @@ db_pass = cfg.lib1.db.password.get_secret_value()  # Explicitly reveal secret
 # Accessing Lib2 Analytics
 api_key = cfg.lib2.analytics.api_key
 
+# Accessing conditionally enabled Lib3
+if cfg.lib3.enabled:
+    dummy_val = cfg.lib3.conditional_parameters.dummy
+    figure_val = cfg.lib3.conditional_parameters.figure
+
 ```
 
 ### 3. Handling Configuration Errors
@@ -91,6 +97,9 @@ To configure the application, create a `.env` file in the root directory. Values
 | `LIB1_DB__PASSWORD` | `cfg.lib1.db.password` | Database password (Secret) |
 | `LIB1_CACHE__REDIS_URL` | `cfg.lib1.cache.redis_url` | Redis connection string |
 | `LIB2_ANALYTICS__API_KEY` | `cfg.lib2.analytics.api_key` | Third-party API token |
+| `LIB3__ENABLED` | `cfg.lib3.enabled` | Enables the optional Lib3 feature |
+| `LIB3__CONDITIONAL_PARAMETERS__DUMMY` | `cfg.lib3.conditional_parameters.dummy` | Conditionally required string for Lib3 |
+| `LIB3__CONDITIONAL_PARAMETERS__FIGURE` | `cfg.lib3.conditional_parameters.figure` | Conditionally required integer for Lib3 |
 
 ---
 

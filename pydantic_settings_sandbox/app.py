@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from lib1 import Lib1Config
 from lib2 import Lib2Config
+from lib3 import Lib3Config
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -17,6 +18,7 @@ class AppConfig(BaseSettings):
     # using their specific prefixes.
     lib1: Lib1Config = Lib1Config()
     lib2: Lib2Config = Lib2Config()
+    lib3: Lib3Config = Lib3Config()
 
     model_config = SettingsConfigDict(
         env_file=".env",
